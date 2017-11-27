@@ -1,5 +1,13 @@
 extends Container
 
+var coins=0
+
+func rand_coin():
+	get_node("score").set_text(str(coins))
+	var pos=get_node("coin").get_pos()
+	pos.x=randi()%(1025-int(get_node("coin").get_item_rect().size.x))+1
+	get_node("coin").set_pos(pos)
+
 func _process(delta):
 	var x=get_node("player").get_pos().x
 	var y=get_node("player").get_pos().y
@@ -16,9 +24,18 @@ func _process(delta):
 		enemy_x-=enemy_w/2
 		enemy_y-=enemy_h/2
 		if x>=enemy_x&&x<=enemy_x+enemy_w&&y<=enemy_y&&y>=enemy_y-enemy_h:
-			print("YOU LOSE")
 			get_tree().quit()
+	var coin_x=get_node("coin").get_pos().x
+	var coin_y=get_node("coin").get_pos().y
+	var coin_w=get_node("coin").get_item_rect().size.x
+	var coin_h=get_node("coin").get_item_rect().size.y
+	coin_x-=coin_w/2
+	coin_y-=coin_h/2
+	if x+w>=coin_x&&x<=coin_x+coin_w&&y-h<=coin_y&&y>=coin_y-coin_h:
+		coins+=1
+		rand_coin()
 
 func _ready():
+	rand_coin()
 	set_process(true)
 	pass
