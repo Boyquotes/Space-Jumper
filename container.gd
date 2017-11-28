@@ -34,6 +34,10 @@ func _process(delta):
 	if x+w>=coin_x&&x<=coin_x+coin_w&&y-h<=coin_y&&y>=coin_y-coin_h:
 		coins+=1
 		rand_coin()
+		if coins%6==0:
+			var enemies=get_tree().get_nodes_in_group("enemies").size()
+			for i in range(enemies):
+				get_tree().get_nodes_in_group("enemies")[i].speed()
 
 func _ready():
 	rand_coin()

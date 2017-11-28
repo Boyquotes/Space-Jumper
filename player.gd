@@ -24,9 +24,9 @@ func jump():
 func _process(delta):
 	var pos=self.get_pos()
 	if Input.is_action_pressed("ui_right")&&pos.x+self.get_item_rect().size.x/2<=1022:
-		pos.x+=2
+		pos.x+=4
 	if Input.is_action_pressed("ui_left")&&pos.x-self.get_item_rect().size.x/2>=2:
-		pos.x-=2
+		pos.x-=4
 	self.set_pos(pos)
 	if Input.is_action_pressed("ui_up"):
 		pressed=true
