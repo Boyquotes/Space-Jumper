@@ -38,6 +38,7 @@ func _process(delta):
 			var enemies=get_tree().get_nodes_in_group("enemies").size()
 			for i in range(enemies):
 				get_tree().get_nodes_in_group("enemies")[i].speed()
+	get_node("debug").set_text(str(OS.get_frames_per_second()))
 
 func _ready():
 	rand_coin()
